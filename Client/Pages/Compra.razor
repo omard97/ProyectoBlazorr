@@ -3,7 +3,7 @@
 <Encabezado />
 
 
-<div class="container titulo">
+<div class="container titulo animate__animated animate__fadeInLeft">
     <div class="row">
         <div class="col-12 text-center">
             <h1> Compra de Artículos</h1>
@@ -13,17 +13,12 @@
     </div>
 
 </div>
+<h1 class="animate__animated animate__bounce">An animated element</h1>
 
 @* Formulario para llenar la tabla*@
 
 
-
-
-
-
-
-
-<main>
+<main >
 
 
     <EditForm Model="MiVenta" class="pb-4">
@@ -36,7 +31,7 @@
                     <InputText @bind-Value=MiVenta.NombreCliente class="form-control" placeholder="Nombre Cliente"> </InputText>
                 </div>
                 <div class="col-2 col-sm-3">
-                    <InputNumber @bind-Value=MiVenta.ValorProducto class="form-control" placeholder="Monto"></InputNumber>
+                    <InputNumber @bind-Value=MiVenta.ValorProducto class="form-control" placeholder="Valor Producto"></InputNumber>
                 </div>
                 <div class="col-2 col-sm-2">
                     <InputNumber @bind-Value=MiVenta.EfectivoCliente class="form-control" placeholder="Dinero recibido"></InputNumber>
@@ -49,7 +44,7 @@
                 </div>
                 <div class="col-2 col-sm-2">
 
-                    <button type="button" class="btn btn-primary">Cargar</button>
+                    <button type="submit" class="btn btn-primary" @onclick="(()=>Guardar(MiVenta))" >Cargar</button>
                 </div>
             </div>
         </div>
@@ -59,28 +54,31 @@
     </EditForm>
 
 
-    <div class="cotainer-fluid">
+    <div class="cotainer-fluid ">
         <div class="row">
             <div class="col-8">
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">N° Cliente</th>
-                            <th scope="col">Fecha</th>
+                            <th scope="col">Fecha / Hora</th>
                             <th scope="col">Nombre Cliente</th>
                             <th scope="col">Valor Producto</th>
                             <th scope="col">Cambio</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                        <tr>
+                        @foreach (var item in Ventas)
+                        {
+                            <tr>
 
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                                <td>@item.Id</td>
+                                <td>@item.Fecha</td>
+                                <td>@item.NombreCliente</td>
+                                <td>@item.ValorProducto</td>
+                                <td>@item.Cambio</td>
+                            </tr>
+                        }
 
                     </tbody>
                 </table>
@@ -90,10 +88,10 @@
                 <section id="services" class="services section-bg">
                     <div class="container">
 
-                        <div class="row tarjetaCentrado">
+                        <div class="row tarjetaCentrado ">
                             <div class="col-lg-8">
                                 <div class="row tarjetaCentrado">
-                                    <div class="col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+                                    <div class="col-md-12">
                                         <div class="icon-box" data-aos="zoom-in" d ata-aos-delay="200">
 
                                             <div class="icon"><i class="bi bi-cash-coin"></i></div>
@@ -134,5 +132,21 @@
     Venta MiVenta = new Venta();
 
 
+    void Guardar(Venta miVenta)
+    {
+        Venta  nuevaVenta = new Venta();
+        nuevaVenta.Id = Ventas.Count()+1;
+        nuevaVenta.Fecha = miVenta.Fecha;
+        nuevaVenta.NombreCliente = miVenta.NombreCliente;
+        nuevaVenta.ValorProducto = miVenta.ValorProducto;
+        nuevaVenta.Transferecnia = miVenta.Transferecnia;
+        nuevaVenta.EfectivoCliente = miVenta.EfectivoCliente;
+        nuevaVenta.Cambio =  miVenta.ValorProducto - miVenta.EfectivoCliente;
+
+        Ventas.Add(nuevaVenta);
+
+        
+
+    }
 
 }
