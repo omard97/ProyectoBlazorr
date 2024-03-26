@@ -1,0 +1,10 @@
+﻿.titulo{
+    padding-top: 72px;
+}
+.controles {
+    padding-top: 20px;
+}
+.tarjetaCentrado{
+    display:flex;
+    justify-content: center
+}

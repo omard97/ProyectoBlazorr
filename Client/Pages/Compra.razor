@@ -1,0 +1,138 @@
+﻿@page "/Compra"
+
+<Encabezado />
+
+
+<div class="container titulo">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1> Compra de Artículos</h1>
+
+        </div>
+
+    </div>
+
+</div>
+
+@* Formulario para llenar la tabla*@
+
+
+
+
+
+
+
+
+<main>
+
+
+    <EditForm Model="MiVenta" class="pb-4">
+
+
+        <div class="container-fluid controles">
+            <div class="row">
+
+                <div class="col-2 col-sm-3">
+                    <InputText @bind-Value=MiVenta.NombreCliente class="form-control" placeholder="Nombre Cliente"> </InputText>
+                </div>
+                <div class="col-2 col-sm-3">
+                    <InputNumber @bind-Value=MiVenta.ValorProducto class="form-control" placeholder="Monto"></InputNumber>
+                </div>
+                <div class="col-2 col-sm-2">
+                    <InputNumber @bind-Value=MiVenta.EfectivoCliente class="form-control" placeholder="Dinero recibido"></InputNumber>
+                </div>
+                <div class="col-2 col-sm-2">
+                    <InputSelect @bind-Value=MiVenta.Transferecnia class="form-control" placeholder="Dinero recibido">
+                        <option value="0">Pago por Efectivo</option>
+                        <option value="1">Pafo por Transferencia</option>
+                    </InputSelect>
+                </div>
+                <div class="col-2 col-sm-2">
+
+                    <button type="button" class="btn btn-primary">Cargar</button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </EditForm>
+
+
+    <div class="cotainer-fluid">
+        <div class="row">
+            <div class="col-8">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">N° Cliente</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Nombre Cliente</th>
+                            <th scope="col">Valor Producto</th>
+                            <th scope="col">Cambio</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class=" col-4">
+                <!-- ======= Services Section ======= -->
+                <section id="services" class="services section-bg">
+                    <div class="container">
+
+                        <div class="row tarjetaCentrado">
+                            <div class="col-lg-8">
+                                <div class="row tarjetaCentrado">
+                                    <div class="col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+                                        <div class="icon-box" data-aos="zoom-in" d ata-aos-delay="200">
+
+                                            <div class="icon"><i class="bi bi-cash-coin"></i></div>
+                                            <h4><a href="">Resumen</a></h4>
+                                            <p>Efectivo Total: ???</p>
+                                            <p>Transferido: ???</p>
+                                            <p>N° de Ventas: ???</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section><!-- End Services Section -->
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+</main>
+
+
+
+@code {
+    // primero defino un listado
+    public static List<Venta> Ventas = new List<Venta>();
+    //Creo el objeto Venta
+    Venta MiVenta = new Venta();
+
+
+
+}
